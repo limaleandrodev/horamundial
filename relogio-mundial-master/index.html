@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>AngularJs Test</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+        <script src="assets/js/app.js"></script>
+        <script src="assets/js/services/timeService.js"></script>
+        <script src="assets/js/controllers/mainController.js"></script>
+
+        <link href="assets/css/style.css" rel="stylesheet" />
+    </head>
+    <body ng-app="appTeste" ng-controller="inicioCtrl">
+        
+        
+        <video src="./img/fundo-video.mp4" autoplay muted loop></video>
+            <a>Home</a>
+            <a>Nossos Serviços</a>
+            <a>Fale Conosco</a>
+        
+
+        <div class="flex">
+            <div>
+                <p>Selecione um Fuso Horário</p>
+            </div>
+            <div>
+                <select ng-model="timezone">
+                    <option ng-value="null">Selecione</option>
+                    <option ng-repeat="tz in timezones" ng-value="tz">{{ tz }}</option>
+                </select>
+
+                <button class="btnAdicionar" ng-click="incluirTimezone(timezone)">Adicionar</button>
+            </div>
+
+            <div ng-repeat="tz in myTimezones" ng-if="tz.timezone && tz.dateTime" class="dataHora">
+                Local: <span class="bold">{{ tz.timezone }}</span>
+                <br>
+                Data: <span class="bold">{{ tz.dateTime | date : "dd/MM/yyyy" }}</span>
+                <br>
+                Hora: <span class="bold">{{ tz.dateTime | date : "HH:mm:ss" }}</span>
+                <br>
+
+                <button ng-click="removerTimezone(tz)">Remover</button>
+            </div>
+        </div>
+
+    </body>
+</html>
